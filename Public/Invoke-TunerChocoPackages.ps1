@@ -1,4 +1,15 @@
 function Invoke-TunerChocoPackages {
+    <#
+    .SYNOPSIS
+    Installs list of Chocolatey packages
+    .DESCRIPTION
+    Installs list of Chocolatey packages
+    .PARAMETER PackageName
+    Name of one or more Chocolatey packages to upgrade or install.
+    Note that if a given package is not installed, it will be installed.
+    .EXAMPLE
+    Invoke-TunerChocoPackages -PackageName ('7zip','vlc','notepadplusplus')
+    #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param (
         [parameter(Mandatory=$True)]

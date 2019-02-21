@@ -1,9 +1,15 @@
 function Invoke-TunerQuickSetup {
 <#
 .SYNOPSIS
-    super-turbo-maxi-uber windows client configuration script thing
+    Quick configuration with default parameters
 .DESCRIPTION
-    yeah, what he just said
+    Quick configuration of Windows machine based on user roles like 
+    Basic, AppDev, AppDevPro, SysAdmin, and Consultant.  Invokes the other
+    functions to cleanup, configure and so forth.
+.PARAMETER Configuration
+    User role-based configuration template: Basic (default), AppDev, AppDevPro,
+    SysAdmin and Consultant.  Controls the chocolatey packages that get installed
+    and additional PowerShell modules that will be installed.
 .PARAMETER NewName
     New computer name to apply (forces restart at the end)
 .PARAMETER BGInfo
@@ -16,6 +22,8 @@ function Invoke-TunerQuickSetup {
     Skip installing windows updates
 .PARAMETER SkipChoco
     Skip installing or updating chocolatey packages
+.PARAMETER ForceRestart
+    Forces the computer to restart at the very end of processing
 .EXAMPLE
     Invoke-TunerQuickSetup
     Installs and configures all defaults without renaming computer or installing BGinfo mod
@@ -31,8 +39,13 @@ function Invoke-TunerQuickSetup {
     Invoke-TunerQuickSetup -Configuration AppDev -BGInfo -SkipCleanup -SkipModules -SkipUpdates
 .EXAMPLE
     Invoke-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates -SkipChoco
+.INPUTS
+.OUTPUTS
 .NOTES
-    version 1.0.0 - David M. Stein
+    version 1.0.0 - DS - https://github.com/skatterbrainz/tuner
+.LINK
+    https://www.powershellgallery.com/packages/PSWindowsUpdate
+    https://chocolatey.org
 #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param (
@@ -46,13 +59,16 @@ function Invoke-TunerQuickSetup {
         [switch] $SkipCleanup,
         [switch] $SkipModules,
         [switch] $SkipUpdates,
-        [switch] $SkipChoco
+        [switch] $SkipChoco,
+        [switch] $ForceRestart
     )
     Start-Transcript -Path $env:USERPROFILE\documents\turbosetup_transcript.txt
     try {
         $time1 = (Get-Date)
         Invoke-TunerPSConfig
-        if (!$SkipCleanup) { Invoke-TunerCleanup }
+        if (!$SkipCleanup) { 
+            Invoke-TunerCleanup 
+        }
         if (!$SkipChoco)   { 
             $pkglist = @('office365proplus','microsoft-teams',
             '7zip','notepadplusplus','paint.net','vlc','brave','googlechrome',
@@ -96,9 +112,15 @@ function Invoke-TunerQuickSetup {
             }
             Invoke-TunerChocoPackages -PackageName $pkglist
         }
-        if (!$SkipModules) { Invoke-TunerPSModules }
-        if (!$SkipUpdates) { Invoke-TunerPatching }
-        if ($BGInfo) { Install-TunerBGInfo }
+        if (!$SkipModules) { 
+            Invoke-TunerPSModules -Name ('azurerm','powerline','dbatools','carbon','platyps','pswindowsupdate','osbuilder') 
+        }
+        if (!$SkipUpdates) { 
+            Invoke-TunerPatching 
+        }
+        if ($BGInfo) { 
+            Install-TunerBGInfo 
+        }
         if (![string]::IsNullOrEmpty($NewName)) {
             Write-Host "renaming computer to $NewName" -ForegroundColor Magenta
             Rename-Computer -NewName $NewName -Force
@@ -112,7 +134,7 @@ function Invoke-TunerQuickSetup {
     catch {}
     finally { 
         Stop-Transcript 
-        if ($restart -eq $True) { Restart-Computer -Force }
+        if ($ForceRestart -or ($restart -eq $True)) { Restart-Computer -Force }
     }
 }
 

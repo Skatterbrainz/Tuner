@@ -1,4 +1,16 @@
 function Install-TunerBGInfo {
+    <#
+    .SYNOPSIS
+    Install and enable Sysinternals BGINFO
+    .DESCRIPTION
+    Install and enable Sysinternals BGINFO
+    .PARAMETER ConfigFile
+    Custom configuration file (.bgi extension) to apply
+    .EXAMPLE
+    Install-TunerBGInfo
+    .EXAMPLE
+    Install-TunerBGInfo -ConfigFile "c:\windows\system32\contoso_servers.bgi"
+    #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param(
         [parameter(Mandatory=$False)]

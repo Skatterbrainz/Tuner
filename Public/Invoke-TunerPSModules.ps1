@@ -1,25 +1,23 @@
 function Invoke-TunerPSModules {
+    <#
+    .SYNOPSIS
+    Installs or Updates one or more PowerShell modules
+    .DESCRIPTION
+    Installs or Updates one or more PowerShell modules
+    .PARAMETER Name
+    Name of one or more PowerShell modules to install or update
+    .EXAMPLE
+    Invoke-TunerPSModules -Name @('dbatools','carbon')
+    #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param(
-        [parameter(Mandatory=$False, HelpMessage="Name of one or more modules")]
-        [string[]] $Name = "",
-        [switch] $CheckOnly,
-        [switch] $SampleList
+        [parameter(Mandatory=$True, HelpMessage="Name of one or more modules")]
+        [ValidateNotNullOrEmpty()]
+        [string[]] $Name
     )
     try {
         Write-Host "updating or installing powershell modules..." -ForegroundColor Cyan
-        if ([string]::IsNullOrEmpty($Name)) {
-            if ($SampleList) {
-                $Name = @('azurerm','powerline','dbatools','carbon','platyps','pswindowsupdate','osbuilder')
-            }
-            else {
-                throw "Module name was not provided"
-            }
-        }
-        elseif ($Name -eq '*') {
-            $Name = Get-Module -ListAvailable | Sort-Object Name | Select-Object -ExpandProperty Name
-        }
-        $modules | ForEach-Object {
+        $Name | ForEach-Object {
             if ($mdx = Get-Module $_ -ListAvailable) {
                 $mdv = $mdx.Version -join '.'
                 try {
