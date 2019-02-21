@@ -5,4 +5,4 @@ Windows client tuning and configuration tools
 https://github.com/Skatterbrainz/Tuner/blob/master/LICENSE
 
 ### Help
-https://github.com/Skatterbrainz/Tuner/blob/master/docs
+https://github.com/Skatterbrainz/Tuner/tree/master/Docs
