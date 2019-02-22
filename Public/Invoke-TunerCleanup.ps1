@@ -25,7 +25,6 @@ function Invoke-TunerCleanup {
     catch {
         Write-Error $Error[0].Exception.Message
     }
-    <#
     Write-Host "getting user applications..." -ForegroundColor Cyan
     try {
         $apps = @(Get-AppxPackage | 
@@ -49,7 +48,6 @@ function Invoke-TunerCleanup {
             Write-Error $errmsg
         }
     }
-    #>
 }
 
 Export-ModuleMember -Function Invoke-TunerCleanup 

@@ -19,8 +19,9 @@ function Invoke-TunerChocoPackages {
     try {
         Set-TunerChoco
         Write-Verbose "installing chocolatey packages (you may want to grab lunch)..."
-        $PackageName | ForEach-Object { cup $_ -y }
-        Write-Host "packages have been processed" -ForegroundColor Green
+        $counter = 0
+        $PackageName | ForEach-Object { cup $_ -y; $counter++ }
+        Write-Host "$counter packages were processed" -ForegroundColor Green
     }
     catch {
         Write-Error $Error[0].Exception.Message

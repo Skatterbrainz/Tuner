@@ -1,65 +1,75 @@
 function Invoke-TunerQuickSetup {
-<#
-.SYNOPSIS
-    Quick configuration with default parameters
-.DESCRIPTION
-    Quick configuration of Windows machine based on user roles like 
-    Basic, AppDev, AppDevPro, SysAdmin, and Consultant.  Invokes the other
-    functions to cleanup, configure and so forth.
-.PARAMETER Configuration
-    User role-based configuration template: Basic (default), AppDev, AppDevPro,
-    SysAdmin and Consultant.  Controls the chocolatey packages that get installed
-    and additional PowerShell modules that will be installed.
-.PARAMETER NewName
-    New computer name to apply (forces restart at the end)
-.PARAMETER BGInfo
-    Install and enable sysinternals bginfo desktop mod
-.PARAMETER SkipCleanup
-    Skip Appx cleanup
-.PARAMETER SkipModules
-    Skip installing or updating powershell modules list
-.PARAMETER SkipUpdates
-    Skip installing windows updates
-.PARAMETER SkipChoco
-    Skip installing or updating chocolatey packages
-.PARAMETER ForceRestart
-    Forces the computer to restart at the very end of processing
-.EXAMPLE
-    Invoke-TunerQuickSetup
-    Installs and configures all defaults without renaming computer or installing BGinfo mod
-.EXAMPLE
-    Invoke-TunerQuickSetup -Configuration AppDev -NewName "Client3"
-.EXAMPLE
-    Invoke-TunerQuickSetup -Configuration SysAdmin -BGInfo
-.EXAMPLE
-    Invoke-TunerQuickSetup -Configuration SysAdmin -NewName "Client3" -BGInfo
-.EXAMPLE
-    Invoke-TunerQuickSetup -Configuration UberNerd -SkipCleanup -SkipModules -SkipUpdates
-.EXAMPLE
-    Invoke-TunerQuickSetup -Configuration AppDev -BGInfo -SkipCleanup -SkipModules -SkipUpdates
-.EXAMPLE
-    Invoke-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates -SkipChoco
-.INPUTS
-.OUTPUTS
-.NOTES
-    version 1.0.0 - DS - https://github.com/skatterbrainz/tuner
-.LINK
-    https://www.powershellgallery.com/packages/PSWindowsUpdate
-    https://chocolatey.org
-#>
+    <#
+    .SYNOPSIS
+        Quick configuration with default parameters
+    .DESCRIPTION
+        Quick configuration of Windows machine based on user roles like 
+        Basic, AppDev, AppDevPro, SysAdmin, and Consultant.  Invokes the other
+        functions to cleanup, configure and so forth.
+    .PARAMETER Configuration
+        User role-based configuration template: Basic (default), AppDev, AppDevPro,
+        SysAdmin and Consultant.  Controls the chocolatey packages that get installed
+        and additional PowerShell modules that will be installed.
+    .PARAMETER ConfigurationsPath
+        Custom path to configuration .txt files (basic.txt, appdev.txt, etc.)
+    .PARAMETER NewName
+        New computer name to apply (forces restart at the end)
+    .PARAMETER BGInfo
+        Install and enable sysinternals bginfo desktop mod
+    .PARAMETER TimeZone
+        Set timezone (default: Eastern Standard Time)
+    .PARAMETER SkipCleanup
+        Skip Appx cleanup
+    .PARAMETER SkipModules
+        Skip installing or updating powershell modules list
+    .PARAMETER SkipUpdates
+        Skip installing windows updates
+    .PARAMETER SkipChoco
+        Skip installing or updating chocolatey packages
+    .PARAMETER SkipTimeZone
+        Skip setting the active time zone (otherwise -TimeZone is applied)
+    .PARAMETER ForceRestart
+        Forces the computer to restart at the very end of processing
+    .EXAMPLE
+        Invoke-TunerQuickSetup
+        Installs and configures all defaults without renaming computer or installing BGinfo mod
+    .EXAMPLE
+        Invoke-TunerQuickSetup -Configuration AppDev -NewName "Client3"
+    .EXAMPLE
+        Invoke-TunerQuickSetup -Configuration SysAdmin -BGInfo
+    .EXAMPLE
+        Invoke-TunerQuickSetup -Configuration SysAdmin -NewName "Client3" -BGInfo
+    .EXAMPLE
+        Invoke-TunerQuickSetup -Configuration Consultant -SkipCleanup -SkipModules -SkipUpdates
+    .EXAMPLE
+        Invoke-TunerQuickSetup -Configuration AppDevPro -BGInfo
+    .EXAMPLE
+        Invoke-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates
+    .EXAMPLE
+        Invoke-TunerQuickSetup -Configuration Basic -BGInfo -TimeZone 'Central Standard Time'
+    .NOTES
+        version 1.0.3 - DS - https://github.com/skatterbrainz/tuner
+    .LINK
+        https://www.powershellgallery.com/packages/PSWindowsUpdate
+        https://chocolatey.org
+    #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param (
         [parameter(Mandatory=$False, HelpMessage="Tuner setup configuration")]
             [ValidateSet('Basic','AppDev','AppDevPro','SysAdmin','Consultant')]
             [string] $Configuration = "Basic",
+        [string] $ConfigurationsPath = "",
         [parameter(Mandatory=$False)]
             [ValidateLength(0,15)]
             [string] $NewName = "",
+        [parameter(Mandatory=$False)]
+            [string] $TimeZone = 'Eastern Standard Time',
         [switch] $BGInfo,
         [switch] $SkipCleanup,
         [switch] $SkipModules,
         [switch] $SkipUpdates,
         [switch] $SkipChoco,
+        [switch] $SkipTimeZone,
         [switch] $ForceRestart
     )
     Start-Transcript -Path $env:USERPROFILE\documents\turbosetup_transcript.txt
@@ -70,47 +80,7 @@ function Invoke-TunerQuickSetup {
             Invoke-TunerCleanup 
         }
         if (!$SkipChoco)   { 
-            $pkglist = @('office365proplus','microsoft-teams',
-            '7zip','notepadplusplus','paint.net','vlc','brave','googlechrome',
-            'google-backup-and-sync','jing','keepass')
-            switch ($Configuration) {
-                'Basic' {
-                    $pkglist += "adobereader"
-                    break;
-                }
-                'AppDev' {
-                    $pkglist += @('visualstudio2017community','vscode','vscode-icons','vscode-powershell',
-                        'vscode-csharp','vscode-mssql','vscode-azurerm-tools',
-                        'slack','microsoftazurestorageexplorer','rdcman','git',
-                        'putty','python3','teamviewer','nodejs','curl','pester',
-                        'azurepowershell','wmiexplorer','git','sysinternals')
-                    break;
-                }
-                'AppDevPro' {
-                    $pkglist += @('visualstudio2017enterprise','vscode','vscode-icons','vscode-powershell',
-                        'vscode-csharp','vscode-mssql','vscode-azurerm-tools','powerbi',
-                        'slack','microsoftazurestorageexplorer','rdcman','git',
-                        'putty','python3','teamviewer','nodejs','curl','pester',
-                        'azurepowershell','wmiexplorer','git','sysinternals')
-                    break;
-                }
-                'SysAdmin' {
-                    $pkglist += @('vscode','vscode-icons','vscode-powershell',
-                        'vscode-mssql','vscode-azurerm-tools','slack','microsoftazurestorageexplorer',
-                        'rdcman','git','putty','python3','teamviewer','azurepowershell',
-                        'wmiexplorer','git','sysinternals')
-                    break;
-                }
-                'Consultant' {
-                    $pkglist = @('visualstudio2017community','adobereader','vscode','vscode-icons',
-                        'vscode-powershell','vscode-csharp','vscode-mssql','vscode-azurerm-tools',
-                        'slack','microsoftazurestorageexplorer','pwsh','rdcman','git','putty','python3',
-                        'teamviewer','soapui','firefox','brave','googlechrome','awscli','awstools.powershell',
-                        'azurepowershell','wmiexplorer','git','sysinternals')
-                    break;
-                }
-            }
-            Invoke-TunerChocoPackages -PackageName $pkglist
+            Install-TunerChocoPackages -Path $ConfigurationsPath -FileName "$Configuration.txt"
         }
         if (!$SkipModules) { 
             Invoke-TunerPSModules -Name ('azurerm','powerline','dbatools','carbon','platyps','pswindowsupdate','osbuilder') 
@@ -119,7 +89,10 @@ function Invoke-TunerQuickSetup {
             Invoke-TunerPatching 
         }
         if ($BGInfo) { 
-            Install-TunerBGInfo 
+            Install-TunerBGInfo
+        }
+        if (!$SkipTimeZone) {
+            Set-TunerTimeZone -TimeZone $TimeZone
         }
         if (![string]::IsNullOrEmpty($NewName)) {
             Write-Host "renaming computer to $NewName" -ForegroundColor Magenta
