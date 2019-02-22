@@ -14,8 +14,9 @@ Quick configuration with default parameters
 ## SYNTAX
 
 ```
-Invoke-TunerQuickSetup [[-Configuration] <String>] [[-NewName] <String>] [-BGInfo] [-SkipCleanup]
- [-SkipModules] [-SkipUpdates] [-SkipChoco] [-ForceRestart] [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-TunerQuickSetup [[-Configuration] <String>] [[-ConfigurationsPath] <String>] [[-NewName] <String>]
+ [[-TimeZone] <String>] [-BGInfo] [-SkipCleanup] [-SkipModules] [-SkipUpdates] [-SkipChoco] [-SkipTimeZone]
+ [-ForceRestart] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,17 +51,22 @@ Invoke-TunerQuickSetup -Configuration SysAdmin -NewName "Client3" -BGInfo
 
 ### EXAMPLE 5
 ```
-Invoke-TunerQuickSetup -Configuration UberNerd -SkipCleanup -SkipModules -SkipUpdates
+Invoke-TunerQuickSetup -Configuration Consultant -SkipCleanup -SkipModules -SkipUpdates
 ```
 
 ### EXAMPLE 6
 ```
-Invoke-TunerQuickSetup -Configuration AppDev -BGInfo -SkipCleanup -SkipModules -SkipUpdates
+Invoke-TunerQuickSetup -Configuration AppDevPro -BGInfo
 ```
 
 ### EXAMPLE 7
 ```
-Invoke-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates -SkipChoco
+Invoke-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates
+```
+
+### EXAMPLE 8
+```
+Invoke-TunerQuickSetup -Configuration Basic -BGInfo -TimeZone 'Central Standard Time'
 ```
 
 ## PARAMETERS
@@ -83,8 +89,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -NewName
-New computer name to apply (forces restart at the end)
+### -ConfigurationsPath
+Custom path to configuration .txt files (basic.txt, appdev.txt, etc.)
 
 ```yaml
 Type: String
@@ -94,6 +100,36 @@ Aliases:
 Required: False
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NewName
+New computer name to apply (forces restart at the end)
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TimeZone
+Set timezone (default: Eastern Standard Time)
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: Eastern Standard Time
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -173,6 +209,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SkipTimeZone
+Skip setting the active time zone (otherwise -TimeZone is applied)
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ForceRestart
 Forces the computer to restart at the very end of processing
 
@@ -228,7 +279,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-version 1.0.0 - DS - https://github.com/skatterbrainz/tuner
+version 1.0.3 - DS - https://github.com/skatterbrainz/tuner
 
 ## RELATED LINKS
 
