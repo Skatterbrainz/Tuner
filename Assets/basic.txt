@@ -1,0 +1,9 @@
+7zip
+adobereader
+google-backup-and-sync
+googlechrome
+keepass
+microsoft-teams
+notepadplusplus
+paint.net
+vlc
