@@ -25,6 +25,6 @@ Invoke-TunerCleanup
 Invoke-TunerPatching
 ```
 
-## Lab Demos
+## Help and Lab Demos
 
 https://github.com/Skatterbrainz/Tuner/wiki
