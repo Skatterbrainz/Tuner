@@ -1,42 +1,39 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://www.powershellgallery.com/packages/PSWindowsUpdate
-https://chocolatey.org
+online version: https://chocolatey.org
 schema: 2.0.0
 ---
 
-# Invoke-TunerPSConfig
+# Invoke-TunerEventWatch
 
 ## SYNOPSIS
-Configure PSGallery and PSGet defaults
+Display event log counter summary
 
 ## SYNTAX
 
 ```
-Invoke-TunerPSConfig [[-MinimumVersion] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-TunerEventWatch [[-LogName] <String>] [[-EventType] <String>] [[-LimitHours] <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Adds PSGallery as trusted repository.
-Insures PSGet is latest version
+Display event log counter summary by type and time limit
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Invoke-TunerPSConfig
+Invoke-TunerEventWatch -LogName Application -EventType Error -LimitHours 6
 ```
 
-### EXAMPLE 2
-```
-Invoke-TunerPSConfig -MinimumVersion "2.0.4"
-```
+Show count of "error" entries in the Application log within the past 6 hours
 
 ## PARAMETERS
 
-### -MinimumVersion
-Minimum allowed version of PSGet (default is '2.0.3')
+### -LogName
+Name of event log: System or Application
+Default = System
 
 ```yaml
 Type: String
@@ -45,38 +42,39 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: 2.0.3
+Default value: System
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+### -EventType
+Type of event entry to filter: Error, Warning, Information
+Default = Error
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
-Aliases: wi
+Aliases:
 
 Required: False
-Position: Named
-Default value: None
+Position: 2
+Default value: Error
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -LimitHours
+Time limit to filter on (hours)
+Default = 24
 
 ```yaml
-Type: SwitchParameter
+Type: Int32
 Parameter Sets: (All)
-Aliases: cf
+Aliases:
 
 Required: False
-Position: Named
-Default value: None
+Position: 3
+Default value: 24
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

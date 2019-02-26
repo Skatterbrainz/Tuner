@@ -1,7 +1,8 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version:
+online version: https://www.powershellgallery.com/packages/PSWindowsUpdate
+https://chocolatey.org
 schema: 2.0.0
 ---
 
@@ -13,7 +14,7 @@ Check PowerShell module installed versions
 ## SYNTAX
 
 ```
-Invoke-TunerPSModuleCheck [<CommonParameters>]
+Invoke-TunerPSModuleCheck [-UpdateAll] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,6 +33,21 @@ Invoke-TunerPSModuleCheck -UpdateAll
 ```
 
 ## PARAMETERS
+
+### -UpdateAll
+If version is older than on remote repository, install latest version
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.

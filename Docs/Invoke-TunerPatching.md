@@ -1,7 +1,8 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version:
+online version: https://www.powershellgallery.com/packages/PSWindowsUpdate
+https://chocolatey.org
 schema: 2.0.0
 ---
 
@@ -70,3 +71,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+
+[https://www.powershellgallery.com/packages/PSWindowsUpdate
+https://chocolatey.org](https://www.powershellgallery.com/packages/PSWindowsUpdate
+https://chocolatey.org)
+

@@ -39,20 +39,28 @@ Installs and configures all defaults without renaming computer or installing BGi
 Invoke-TunerQuickSetup -Configuration AppDev -NewName "Client3"
 ```
 
+Installs chocolatey packages for 'appdev' user and renames computer to Client3
+
 ### EXAMPLE 3
 ```
 Invoke-TunerQuickSetup -Configuration SysAdmin -BGInfo
 ```
+
+Installs default chocolatey packages and Sysinternals BGinfo with default options
 
 ### EXAMPLE 4
 ```
 Invoke-TunerQuickSetup -Configuration SysAdmin -NewName "Client3" -BGInfo
 ```
 
+Installs chocolatey packages for 'sysadmin' user, renames computer to Client3 and installs Sysinternals BGInfo
+
 ### EXAMPLE 5
 ```
 Invoke-TunerQuickSetup -Configuration Consultant -SkipCleanup -SkipModules -SkipUpdates
 ```
+
+Installs default chocolatey packages for 'consultant' user, skips Appx cleanup, PS modules and patching
 
 ### EXAMPLE 6
 ```
@@ -64,10 +72,21 @@ Invoke-TunerQuickSetup -Configuration AppDevPro -BGInfo
 Invoke-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates
 ```
 
+Installs default default chocolatey packages, renames computer to Client3, installs BGInfo, 
+skips Appx cleanup, PS modules and patching
+
 ### EXAMPLE 8
 ```
 Invoke-TunerQuickSetup -Configuration Basic -BGInfo -TimeZone 'Central Standard Time'
 ```
+
+### EXAMPLE 9
+```
+Invoke-TunerQuickSetup -Configuration SysAdmin -ConfigurationsPath "x:\configfiles" -BGInfo -NewName "W10-TEST" -ForceRestart
+```
+
+Installs default chocolatey packages for 'sysadmin' user from custom location x:\configfiles, installs BGInfo, 
+renames computer to W10-TEST and forces a restart at the end
 
 ## PARAMETERS
 
@@ -279,7 +298,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-version 1.0.3 - DS - https://github.com/skatterbrainz/tuner
 
 ## RELATED LINKS
 
