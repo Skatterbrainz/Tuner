@@ -35,20 +35,28 @@ function Invoke-TunerQuickSetup {
         Installs and configures all defaults without renaming computer or installing BGinfo mod
     .EXAMPLE
         Invoke-TunerQuickSetup -Configuration AppDev -NewName "Client3"
+        Installs chocolatey packages for 'appdev' user and renames computer to Client3
     .EXAMPLE
         Invoke-TunerQuickSetup -Configuration SysAdmin -BGInfo
+        Installs default chocolatey packages and Sysinternals BGinfo with default options
     .EXAMPLE
         Invoke-TunerQuickSetup -Configuration SysAdmin -NewName "Client3" -BGInfo
+        Installs chocolatey packages for 'sysadmin' user, renames computer to Client3 and installs Sysinternals BGInfo
     .EXAMPLE
         Invoke-TunerQuickSetup -Configuration Consultant -SkipCleanup -SkipModules -SkipUpdates
+        Installs default chocolatey packages for 'consultant' user, skips Appx cleanup, PS modules and patching
     .EXAMPLE
         Invoke-TunerQuickSetup -Configuration AppDevPro -BGInfo
     .EXAMPLE
         Invoke-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates
+        Installs default default chocolatey packages, renames computer to Client3, installs BGInfo, 
+        skips Appx cleanup, PS modules and patching
     .EXAMPLE
         Invoke-TunerQuickSetup -Configuration Basic -BGInfo -TimeZone 'Central Standard Time'
-    .NOTES
-        version 1.0.3 - DS - https://github.com/skatterbrainz/tuner
+    .EXAMPLE
+        Invoke-TunerQuickSetup -Configuration SysAdmin -ConfigurationsPath "x:\configfiles" -BGInfo -NewName "W10-TEST" -ForceRestart
+        Installs default chocolatey packages for 'sysadmin' user from custom location x:\configfiles, installs BGInfo, 
+        renames computer to W10-TEST and forces a restart at the end
     .LINK
         https://www.powershellgallery.com/packages/PSWindowsUpdate
         https://chocolatey.org
@@ -77,6 +85,7 @@ function Invoke-TunerQuickSetup {
         $time1 = (Get-Date)
         Invoke-TunerPSConfig
         if (!$SkipCleanup) { 
+            # call without -GridSelect option for fast-mode processing
             Invoke-TunerCleanup 
         }
         if (!$SkipChoco)   { 

@@ -1,18 +1,21 @@
 function Invoke-TunerPSModuleCheck {
     <#
     .SYNOPSIS
-    Check PowerShell module installed versions
+        Check PowerShell module installed versions
     .DESCRIPTION
-    Check each installed PowerShell module against the latest available version
+        Check each installed PowerShell module against the latest available version
     .PARAMETER UpdateAll
-    If version is older than on remote repository, install latest version
+        If version is older than on remote repository, install latest version
     .EXAMPLE 
-    Invoke-TunerPSModuleCheck
+        Invoke-TunerPSModuleCheck
     .EXAMPLE
-    Invoke-TunerPSModuleCheck -UpdateAll
+        Invoke-TunerPSModuleCheck -UpdateAll
     #>
     [CmdletBinding()]
-    param ()
+    param (
+        [parameter(Mandatory=$False, HelpMessage="Force update of outdated modules")]
+        [switch] $UpdateAll
+    )
     try {
         $Modules = Get-Module -ListAvailable | Sort-Object Name
         $Modules | Foreach-Object {

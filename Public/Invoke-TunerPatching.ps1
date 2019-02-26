@@ -1,11 +1,14 @@
 function Invoke-TunerPatching {
     <#
     .SYNOPSIS
-    Installs pending updates for Windows computer
+        Installs pending updates for Windows computer
     .DESCRIPTION
-    Installs pending updates for Windows computer
+        Installs pending updates for Windows computer
     .EXAMPLE
-    Invoke-TunerPatching
+        Invoke-TunerPatching
+    .LINK
+        https://www.powershellgallery.com/packages/PSWindowsUpdate
+        https://chocolatey.org
     #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param()
@@ -13,7 +16,7 @@ function Invoke-TunerPatching {
         Write-Host "installing pending updates..." -ForegroundColor Cyan
 		$ulist = Get-WindowsUpdate
 		if ($ulist.Count -gt 0) {
-			Get-WindowsUpdate -Download -AcceptAll -Install -IgnoreReboot -Confirm:$False -ErrorAction Stop
+			Get-WindowsUpdate -Download -AcceptAll -RecurseCycle 3 -Install -IgnoreReboot -Confirm:$False -ErrorAction Stop
 		}
 		else {
 			Write-Host "no pending updates were found" -ForegroundColor Green
