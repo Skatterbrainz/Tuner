@@ -1,13 +1,15 @@
+#requires -RunAsAdministrator
+
 function Invoke-TunerPSModules {
     <#
     .SYNOPSIS
-    Installs or Updates one or more PowerShell modules
+        Installs or Updates one or more PowerShell modules
     .DESCRIPTION
-    Installs or Updates one or more PowerShell modules
+        Installs or Updates one or more PowerShell modules
     .PARAMETER Name
-    Name of one or more PowerShell modules to install or update
+        Name of one or more PowerShell modules to install or update
     .EXAMPLE
-    Invoke-TunerPSModules -Name @('dbatools','carbon')
+        Invoke-TunerPSModules -Name @('dbatools','carbon')
     #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param(

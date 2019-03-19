@@ -1,3 +1,4 @@
+#requires -RunAsAdministrator
 function Invoke-TunerPSConfig {
     <#
     .SYNOPSIS

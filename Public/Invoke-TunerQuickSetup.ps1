@@ -1,3 +1,4 @@
+#requires -RunAsAdministrator
 function Invoke-TunerQuickSetup {
     <#
     .SYNOPSIS
@@ -66,19 +67,27 @@ function Invoke-TunerQuickSetup {
         [parameter(Mandatory=$False, HelpMessage="Tuner setup configuration")]
             [ValidateSet('Basic','AppDev','AppDevPro','SysAdmin','Consultant')]
             [string] $Configuration = "Basic",
-        [string] $ConfigurationsPath = "",
-        [parameter(Mandatory=$False)]
+        [parameter(Mandatory=$False, HelpMessage="Path to custom configuration files")]
+            [string] $ConfigurationsPath = "",
+        [parameter(Mandatory=$False, HelpMessage="New computer name")]
             [ValidateLength(0,15)]
             [string] $NewName = "",
         [parameter(Mandatory=$False)]
             [string] $TimeZone = 'Eastern Standard Time',
-        [switch] $BGInfo,
-        [switch] $SkipCleanup,
-        [switch] $SkipModules,
-        [switch] $SkipUpdates,
-        [switch] $SkipChoco,
-        [switch] $SkipTimeZone,
-        [switch] $ForceRestart
+        [parameter(Mandatory=$False, HelpMessage="Install and enable BGInfo profile")]
+            [switch] $BGInfo,
+        [parameter(Mandatory=$False, HelpMessage="Skip Appx clean-up")]
+            [switch] $SkipCleanup,
+        [parameter(Mandatory=$False, HelpMessage="Skip installing PowerShell modules")]
+            [switch] $SkipModules,
+        [parameter(Mandatory=$False, HelpMessage="Skip Windows updates")]
+            [switch] $SkipUpdates,
+        [parameter(Mandatory=$False, HelpMessage="Skip Chocolatey package installations")]
+            [switch] $SkipChoco,
+        [parameter(Mandatory=$False, HelpMessage="Skip time zone configuration")]
+            [switch] $SkipTimeZone,
+        [parameter(Mandatory=$False, HelpMessage="Force a restart when finished")]
+            [switch] $ForceRestart
     )
     Start-Transcript -Path $env:USERPROFILE\documents\turbosetup_transcript.txt
     try {
