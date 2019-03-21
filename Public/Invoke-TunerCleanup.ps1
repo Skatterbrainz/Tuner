@@ -37,6 +37,9 @@ function Invoke-TunerCleanup {
                 }
             }
         }
+        else {
+            Write-Host "no packages were selected for removal" -ForegroundColor Cyan
+        }
         if ($apps2.Count -gt 0) {
             Write-Verbose "processing appx user package selections"
             $apps2 | Foreach-Object {
@@ -49,6 +52,9 @@ function Invoke-TunerCleanup {
                 }
             }
             Write-Host "$($apps2.Count) packages removed" -ForegroundColor Cyan
+        }
+        else {
+            Write-Host "no packages were selected for removal" -ForegroundColor Cyan
         }
     }
     else {
