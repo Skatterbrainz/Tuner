@@ -24,21 +24,26 @@ function Invoke-TuneUp {
         Write-Verbose "reading defaults from registry"
         $key  = Get-Item -Path $regpath -ErrorAction Stop
         $config = $key.GetValue('ConfigurationName')
-        Write-Debug "found!"
         if ([string]::IsNullOrEmpty($config)) {
             Write-Warning "Invoke-TunerQuickSetup needs to be executed at least once before using this function"
             break
         }
-        Invoke-TunerChocoPackages -Configuration $config
+        Write-Verbose "updating chocolatey packages"
+        #Invoke-TunerChocoPackages -Configuration $config
+        choco upgrade all -y
         if ($Full) { 
+            Write-Verbose "updating powershell modules"
             Invoke-TunerPSModuleCheck -UpdateAll 
         }
+        Write-Verbose "checking for microsoft updates"
         Invoke-TunerPatching
+        Write-Verbose "updating registry timestamp"
         New-ItemProperty -Path $regpath -Name "LastRun" -Value (Get-Date) -Force
     }
     catch {
         Write-Error $Error[0].Exception.Message
     }
+    Write-Host "tune-up completed!" -ForegroundColor Green
 }
 
 Export-ModuleMember -Function Invoke-TuneUp
