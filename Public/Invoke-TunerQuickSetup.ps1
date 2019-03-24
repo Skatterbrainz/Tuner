@@ -90,6 +90,7 @@ function Invoke-TunerQuickSetup {
             [switch] $ForceRestart
     )
     Start-Transcript -Path $env:USERPROFILE\documents\turbosetup_transcript.txt
+    $regpath = "HKCU:Software\Tuner"
     try {
         $time1 = (Get-Date)
         Invoke-TunerPSConfig
@@ -120,6 +121,9 @@ function Invoke-TunerQuickSetup {
         }
         $time2 = (Get-Date)
         $rtime = [math]::Round((New-TimeSpan -Start $time1 -End $time2).TotalMinutes,2)
+        New-ItemProperty -Path $regpath -Name "ConfigurationName" -Value $Configuration -Force
+        New-ItemProperty -Path $regpath -Name "TimeZone" -Value $TimeZone -Force
+        New-ItemProperty -Path $regpath -Name "LastRun" -Value (Get-Date) -Force
         Write-Host "total runtime: $rtime minutes" -ForegroundColor Green
     }
     catch {}
