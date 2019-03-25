@@ -64,7 +64,7 @@ function Invoke-TunerQuickSetup {
     #>
     [CmdletBinding(SupportsShouldProcess=$True)]
     param (
-        [parameter(Mandatory=$False, HelpMessage="Tuner setup configuration")]
+        [parameter(Mandatory=$False, HelpMessage="Tuner setup configuration for Chocolatey packages, and PowerShell modules")]
             [ValidateSet('Basic','AppDev','AppDevPro','SysAdmin','Consultant')]
             [string] $Configuration = "Basic",
         [parameter(Mandatory=$False, HelpMessage="Path to custom configuration files")]
@@ -102,7 +102,28 @@ function Invoke-TunerQuickSetup {
             Install-TunerChocoPackages -Path $ConfigurationsPath -FileName "$Configuration.txt"
         }
         if (!$SkipModules) { 
-            Invoke-TunerPSModules -Name ('azurerm','powerline','dbatools','carbon','platyps','pswindowsupdate','osbuilder') 
+            switch ($Configuration) {
+                'AppDevPro' {
+                    Invoke-TunerPSModules -Name ('azurerm','powerline','dbatools','carbon','platyps','pswindowsupdate','EditorServicesCommandSuite') 
+                    break
+                }
+                'AppDev' {
+                    Invoke-TunerPSModules -Name ('azurerm','powerline','dbatools','carbon','platyps','EditorServicesCommandSuite')
+                    break
+                }
+                'Consultant' {
+                    Invoke-TunerPSModules -Name ('azurerm','powerline','dbatools','carbon','platyps','osbuilder','EditorServicesCommandSuite') 
+                    break
+                }
+                'SysAdmin' {
+                    Invoke-TunerPSModules -Name ('azurerm','dbatools','carbon','osbuilder') 
+                    break
+                }
+                default {
+                    Invoke-TunerPSModules -Name ('powerline','dbatools') 
+                    break
+                }
+            } # switch
         }
         if (!$SkipUpdates) { 
             Invoke-TunerPatching 
