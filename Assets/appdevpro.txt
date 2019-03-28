@@ -3,6 +3,7 @@ adobereader
 azurepowershell
 curl
 git
+github-desktop
 google-backup-and-sync
 googlechrome
 keepass
