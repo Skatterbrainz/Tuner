@@ -15,10 +15,10 @@ function Start-TunerDiskClean {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
     try {
-        #        $ldsk = Get-CimInstance -ClassName "Win32_LogicalDisk" -Namespace "root\cimv2" | Where-Object { $_.DeviceID -eq "$Disk`:" }
-        #        $used = $ldsk.Size - $ldsk.FreeSpace
-        #        $upct = [math]::Round($ldsk.Size / $used, 2)
-        #        Write-Output "$upct`% used"
+        $ldsk = Get-CimInstance -ClassName "Win32_LogicalDisk" -Namespace "root\cimv2" | Where-Object { $_.DeviceID -eq "$Disk`:" }
+        $used = $ldsk.Size - $ldsk.FreeSpace
+        $upct = [math]::Round($ldsk.Size / $used, 2)
+        Write-Output "C`: is $upct`% used"
         Write-Output "running disk cleanup"
         $HKLM = [UInt32] “0x80000002”
         $strKeyPath = "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches"
@@ -27,7 +27,7 @@ function Start-TunerDiskClean {
         Write-Output "enumerating $($subkeys.Count) cleanup targets"
         $index = 1
         foreach ($subkey in $subkeys) {
-            Write-Output "subkey [$index] of [$($subkeys.Count)]: $subkey"
+            Write-Verbose "subkey [$index] of [$($subkeys.Count)]: $subkey"
             try {
                 New-ItemProperty -Path "HKLM:\$strKeyPath\$subkey" -Name $strValueName -PropertyType DWord -Value 2 -ErrorAction SilentlyContinue | Out-Null
             }
@@ -44,6 +44,10 @@ function Start-TunerDiskClean {
             catch { }
         }
         Write-Output "complete!"
+        $ldsk = Get-CimInstance -ClassName "Win32_LogicalDisk" -Namespace "root\cimv2" | Where-Object { $_.DeviceID -eq "$Disk`:" }
+        $used = $ldsk.Size - $ldsk.FreeSpace
+        $upct = [math]::Round($ldsk.Size / $used, 2)
+        Write-Output "C`: is now $upct`% used"
     }
     catch {
         $err = $error[0]
