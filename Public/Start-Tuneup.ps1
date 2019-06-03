@@ -1,5 +1,5 @@
 #requires -RunAsAdministrator
-function Invoke-TuneUp {
+function Start-TuneUp {
     [CmdletBinding()]
     <#
     .SYNOPSIS
@@ -11,18 +11,18 @@ function Invoke-TuneUp {
         Invokes PowerShell module check-up and updates (Invoke-TunerPSModuleCheck -UpdateAll)
         If omitted, invokes Chocolatey packages (Invoke-TunerChocoPackages) and Patching (Invoke-TunerPatching)
     .EXAMPLE
-        Invoke-Tuneup
+        Start-Tuneup
     .EXAMPLE
-        Invoke-Tuneup -Full
+        Start-Tuneup -Full
     #>
     param (
-        [parameter(Mandatory=$False, HelpMessage="Run full tune-up")]
+        [parameter(Mandatory = $False, HelpMessage = "Run full tune-up")]
         [switch] $Full
     )
     $regpath = 'HKCU:Software\Tuner'
     try {
         Write-Verbose "reading defaults from registry"
-        $key  = Get-Item -Path $regpath -ErrorAction Stop
+        $key = Get-Item -Path $regpath -ErrorAction Stop
         $config = $key.GetValue('ConfigurationName')
         if ([string]::IsNullOrEmpty($config)) {
             Write-Warning "Invoke-TunerQuickSetup needs to be executed at least once before using this function"
@@ -46,4 +46,4 @@ function Invoke-TuneUp {
     Write-Host "tune-up completed!" -ForegroundColor Green
 }
 
-Export-ModuleMember -Function Invoke-TuneUp
+Export-ModuleMember -Function Start-TuneUp
