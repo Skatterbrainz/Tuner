@@ -1,37 +1,40 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerQuickSetup.md
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerPSModuleCheck.md
 schema: 2.0.0
 ---
 
-# Start-TuneUp
+# Invoke-TunerPSModuleCheck
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Check PowerShell module installed versions
 
 ## SYNTAX
 
 ```
-Start-TuneUp [-Full] [<CommonParameters>]
+Invoke-TunerPSModuleCheck [-UpdateAll] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Check each installed PowerShell module against the latest available version
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Invoke-TunerPSModuleCheck
 ```
 
-{{ Add example description here }}
+### EXAMPLE 2
+```
+Invoke-TunerPSModuleCheck -UpdateAll
+```
 
 ## PARAMETERS
 
-### -Full
-Run full tune-up
+### -UpdateAll
+If version is older than on remote repository, install latest version
 
 ```yaml
 Type: SwitchParameter
@@ -40,7 +43,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -50,11 +53,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
+
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerPSModuleCheck.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerPSModuleCheck.md)
+

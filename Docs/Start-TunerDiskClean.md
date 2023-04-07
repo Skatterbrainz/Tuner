@@ -1,46 +1,64 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://chocolatey.org
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerDiskClean.md
 schema: 2.0.0
 ---
 
 # Start-TunerDiskClean
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Clean up local disks
 
 ## SYNTAX
 
 ```
-Start-TunerDiskClean [[-Disk] <String>] [<CommonParameters>]
+Start-TunerDiskClean [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Clean up local disks
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Start-TunerDiskClean
 ```
 
-{{ Add example description here }}
+### EXAMPLE 2
+```
+Start-TunerDiskClean -WhatIf
+```
 
 ## PARAMETERS
 
-### -Disk
-Disk or Drive ID
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
-Accepted values: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+Aliases: wi
 
 Required: False
-Position: 0
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -51,11 +69,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
+
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerDiskClean.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerDiskClean.md)
+

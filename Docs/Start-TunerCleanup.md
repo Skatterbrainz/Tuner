@@ -1,7 +1,7 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://chocolatey.org
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerCleanup.md
 schema: 2.0.0
 ---
 
@@ -24,16 +24,14 @@ Remove selected Windows 10 appx packages
 ### EXAMPLE 1
 ```
 Start-TunerCleanup
-```
-
 Processes an automatic kill list to vaporize stupidware
+```
 
 ### EXAMPLE 2
 ```
 Start-TunerCleanup -GridSelect
-```
-
 Displays a gridview menu to select Appx and AppxProvisioned packages to remove
+```
 
 ## PARAMETERS
 
@@ -93,3 +91,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerCleanup.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerCleanup.md)
+

@@ -1,7 +1,7 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version:
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Install-TunerBGInfo.md
 schema: 2.0.0
 ---
 
@@ -89,3 +89,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Install-TunerBGInfo.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Install-TunerBGInfo.md)
+

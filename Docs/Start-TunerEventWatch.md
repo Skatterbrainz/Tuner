@@ -1,7 +1,7 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://chocolatey.org
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerEventWatch.md
 schema: 2.0.0
 ---
 
@@ -25,9 +25,8 @@ Display event log counter summary by type and time limit
 ### EXAMPLE 1
 ```
 Start-TunerEventWatch -LogName Application -EventType Error -LimitHours 6
-```
-
 Show count of "error" entries in the Application log within the past 6 hours
+```
 
 ## PARAMETERS
 
@@ -89,3 +88,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerEventWatch.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerEventWatch.md)
+

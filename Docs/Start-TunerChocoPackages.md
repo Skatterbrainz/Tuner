@@ -1,7 +1,7 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://chocolatey.org
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerChocoPackages.md
 schema: 2.0.0
 ---
 
@@ -25,30 +25,26 @@ Installs list of Chocolatey packages
 ### EXAMPLE 1
 ```
 Start-TunerChocoPackages
-```
-
 Installs list from "Basic" profile configuration (see /assets/basic.txt for list of packages)
+```
 
 ### EXAMPLE 2
 ```
 Start-TunerChocoPackages 'vlc'
-```
-
 Installs VLC player package only
+```
 
 ### EXAMPLE 3
 ```
 Start-TunerChocoPackages -PackageName ('7zip','vlc','notepadplusplus')
-```
-
 Installs packages named in array
+```
 
 ### EXAMPLE 4
 ```
 Start-TunerChocoPackages -Configuration Consultant -ConfigurationPath "\\server3\docs\configs\"
+Install list from "Consultant" profile configuration found in custom path "\\server3\docs\configs\"
 ```
-
-Install list from "Consultant" profile configuration found in custom path "\\\\server3\docs\configs\"
 
 ## PARAMETERS
 
@@ -144,5 +140,5 @@ If -PackageName is not empty/null, it overrides the -Configuration parameter (on
 
 ## RELATED LINKS
 
-[https://chocolatey.org](https://chocolatey.org)
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerChocoPackages.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerChocoPackages.md)
 

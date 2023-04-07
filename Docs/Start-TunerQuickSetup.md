@@ -1,8 +1,7 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://www.powershellgallery.com/packages/PSWindowsUpdate
-https://chocolatey.org
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerQuickSetup.md
 schema: 2.0.0
 ---
 
@@ -30,37 +29,32 @@ functions to cleanup, configure and so forth.
 ### EXAMPLE 1
 ```
 Invoke-TunerQuickSetup
-```
-
 Installs and configures all defaults without renaming computer or installing BGinfo mod
+```
 
 ### EXAMPLE 2
 ```
 Start-TunerQuickSetup -Configuration AppDev -NewName "Client3"
-```
-
 Installs chocolatey packages for 'appdev' user and renames computer to Client3
+```
 
 ### EXAMPLE 3
 ```
 Start-TunerQuickSetup -Configuration SysAdmin -BGInfo
-```
-
 Installs default chocolatey packages and Sysinternals BGinfo with default options
+```
 
 ### EXAMPLE 4
 ```
 Start-TunerQuickSetup -Configuration SysAdmin -NewName "Client3" -BGInfo
-```
-
 Installs chocolatey packages for 'sysadmin' user, renames computer to Client3 and installs Sysinternals BGInfo
+```
 
 ### EXAMPLE 5
 ```
 Start-TunerQuickSetup -Configuration Consultant -SkipCleanup -SkipModules -SkipUpdates
-```
-
 Installs default chocolatey packages for 'consultant' user, skips Appx cleanup, PS modules and patching
+```
 
 ### EXAMPLE 6
 ```
@@ -70,10 +64,9 @@ Start-TunerQuickSetup -Configuration AppDevPro -BGInfo
 ### EXAMPLE 7
 ```
 Start-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates
-```
-
 Installs default default chocolatey packages, renames computer to Client3, installs BGInfo, 
 skips Appx cleanup, PS modules and patching
+```
 
 ### EXAMPLE 8
 ```
@@ -83,10 +76,9 @@ Invoke-TunerQuickSetup -Configuration Basic -BGInfo -TimeZone 'Central Standard 
 ### EXAMPLE 9
 ```
 Start-TunerQuickSetup -Configuration SysAdmin -ConfigurationsPath "x:\configfiles" -BGInfo -NewName "W10-TEST" -ForceRestart
-```
-
 Installs default chocolatey packages for 'sysadmin' user from custom location x:\configfiles, installs BGInfo, 
 renames computer to W10-TEST and forces a restart at the end
+```
 
 ## PARAMETERS
 
@@ -300,7 +292,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://www.powershellgallery.com/packages/PSWindowsUpdate
-https://chocolatey.org](https://www.powershellgallery.com/packages/PSWindowsUpdate
-https://chocolatey.org)
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerQuickSetup.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerQuickSetup.md)
 

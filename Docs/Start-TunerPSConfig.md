@@ -1,8 +1,7 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://www.powershellgallery.com/packages/PSWindowsUpdate
-https://chocolatey.org
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerPSConfig.md
 schema: 2.0.0
 ---
 
@@ -91,3 +90,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerPSConfig.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerPSConfig.md)
+
