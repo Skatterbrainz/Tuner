@@ -1,8 +1,6 @@
 7zip
 adobereader
 awscli
-awstools.powershell
-azurepowershell
 brave
 curl
 firefox
@@ -11,13 +9,13 @@ github-desktop
 google-backup-and-sync
 googlechrome
 keepass
-microsoft-teams
 microsoftazurestorageexplorer
 nodejs
 notepadplusplus
 office365proplus
 paint.net
 pester
+postman
 powerbi
 putty
 python3
@@ -25,13 +23,6 @@ rdcman
 slack
 soapui
 sysinternals
-teamviewer
-visualstudio2017community
 vlc
 vscode
-vscode-azurerm-tools
-vscode-csharp
-vscode-icons
-vscode-mssql
-vscode-powershell
 wmiexplorer
