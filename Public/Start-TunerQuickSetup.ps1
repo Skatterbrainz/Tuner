@@ -3,7 +3,7 @@ function Start-TunerQuickSetup {
 	.SYNOPSIS
 		Quick configuration with default parameters
 	.DESCRIPTION
-		Quick configuration of Windows machine based on user roles like 
+		Quick configuration of Windows machine based on user roles like
 		Basic, AppDev, AppDevPro, SysAdmin, and Consultant.  Invokes the other
 		functions to cleanup, configure and so forth.
 	.PARAMETER Configuration
@@ -49,13 +49,13 @@ function Start-TunerQuickSetup {
 		Start-TunerQuickSetup -Configuration AppDevPro -BGInfo
 	.EXAMPLE
 		Start-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates
-		Installs default default chocolatey packages, renames computer to Client3, installs BGInfo, 
+		Installs default default chocolatey packages, renames computer to Client3, installs BGInfo,
 		skips Appx cleanup, PS modules and patching
 	.EXAMPLE
 		Invoke-TunerQuickSetup -Configuration Basic -BGInfo -TimeZone 'Central Standard Time'
 	.EXAMPLE
 		Start-TunerQuickSetup -Configuration SysAdmin -ConfigurationsPath "x:\configfiles" -BGInfo -NewName "W10-TEST" -ForceRestart
-		Installs default chocolatey packages for 'sysadmin' user from custom location x:\configfiles, installs BGInfo, 
+		Installs default chocolatey packages for 'sysadmin' user from custom location x:\configfiles, installs BGInfo,
 		renames computer to W10-TEST and forces a restart at the end
 	.LINK
 		https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerQuickSetup.md
@@ -105,7 +105,7 @@ function Start-TunerQuickSetup {
 		if (!$SkipModules) { 
 			switch ($Configuration) {
 				'AppDevPro' {
-					Invoke-TunerPSModules -Name ('azurerm', 'powerline', 'dbatools', 'carbon', 'platyps', 'pswindowsupdate', 'EditorServicesCommandSuite') 
+					Invoke-TunerPSModules -Name ('azurerm', 'powerline', 'dbatools', 'carbon', 'platyps', 'pswindowsupdate', 'EditorServicesCommandSuite')
 					break
 				}
 				'AppDev' {
@@ -113,7 +113,7 @@ function Start-TunerQuickSetup {
 					break
 				}
 				'Consultant' {
-					Invoke-TunerPSModules -Name ('azurerm', 'powerline', 'dbatools', 'carbon', 'platyps', 'osbuilder', 'EditorServicesCommandSuite') 
+					Invoke-TunerPSModules -Name ('azurerm', 'powerline', 'dbatools', 'carbon', 'platyps', 'osbuilder', 'EditorServicesCommandSuite')
 					break
 				}
 				'SysAdmin' {
