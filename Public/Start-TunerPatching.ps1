@@ -23,6 +23,6 @@ function Start-TunerPatching {
 			Write-Host "no pending updates were found" -ForegroundColor Green
 		}
 	} catch {
-		Write-Error $Error[0].Exception.Message
+		Write-Error $_.Exception.Message
 	}
 }
