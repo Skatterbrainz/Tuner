@@ -19,7 +19,7 @@ Start-TunerQuickSetup [[-Configuration] <String>] [[-ConfigurationsPath] <String
 ```
 
 ## DESCRIPTION
-Quick configuration of Windows machine based on user roles like 
+Quick configuration of Windows machine based on user roles like
 Basic, AppDev, AppDevPro, SysAdmin, and Consultant. 
 Invokes the other
 functions to cleanup, configure and so forth.
@@ -64,7 +64,7 @@ Start-TunerQuickSetup -Configuration AppDevPro -BGInfo
 ### EXAMPLE 7
 ```
 Start-TunerQuickSetup -NewName "Client3" -BGInfo -SkipCleanup -SkipModules -SkipUpdates
-Installs default default chocolatey packages, renames computer to Client3, installs BGInfo, 
+Installs default default chocolatey packages, renames computer to Client3, installs BGInfo,
 skips Appx cleanup, PS modules and patching
 ```
 
@@ -76,7 +76,7 @@ Invoke-TunerQuickSetup -Configuration Basic -BGInfo -TimeZone 'Central Standard 
 ### EXAMPLE 9
 ```
 Start-TunerQuickSetup -Configuration SysAdmin -ConfigurationsPath "x:\configfiles" -BGInfo -NewName "W10-TEST" -ForceRestart
-Installs default chocolatey packages for 'sysadmin' user from custom location x:\configfiles, installs BGInfo, 
+Installs default chocolatey packages for 'sysadmin' user from custom location x:\configfiles, installs BGInfo,
 renames computer to W10-TEST and forces a restart at the end
 ```
 

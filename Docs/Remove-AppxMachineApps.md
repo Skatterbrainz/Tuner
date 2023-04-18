@@ -1,49 +1,46 @@
 ---
 external help file: tuner-help.xml
 Module Name: tuner
-online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerDiskClean.md
+online version: https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerPSModuleCheck.md
 schema: 2.0.0
 ---
 
-# Start-TunerDiskClean
+# Remove-AppxMachineApps
 
 ## SYNOPSIS
-Clean up local disks
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-Start-TunerDiskClean [[-Disk] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-AppxMachineApps [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Clean up local disks
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Start-TunerDiskClean
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-### EXAMPLE 2
-```
-Start-TunerDiskClean -WhatIf
-```
+{{ Add example description here }}
 
 ## PARAMETERS
 
-### -Disk
-{{ Fill Disk Description }}
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: cf
 
 Required: False
-Position: 1
-Default value: C
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -64,31 +61,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
+### None
+
 ## OUTPUTS
 
+### System.Object
 ## NOTES
 
 ## RELATED LINKS
-
-[https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerDiskClean.md](https://github.com/Skatterbrainz/Tuner/blob/master/Docs/Start-TunerDiskClean.md)
-
